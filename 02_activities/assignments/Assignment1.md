@@ -203,12 +203,15 @@ Link if you encounter a paywall: https://web.archive.org/web/20240422105834/http
 
 Consider, for example, concepts of fariness, inequality, social structures, marginalization, intersection of technology and society, etc.
 
+Reflections:
 
-```
 The article provided an example on how thoughtful database design with scalability is essential when considering database management. It also reminds me that even though we often consider data as objective from a scientific perspective, it can be rather subjective and socially obstructed as we (researchers) determine the inclusion and exclusion criteria for the database.
 
 One example that I can think of in regard to values embedded in data system would be graduate school applications where there is usually a list of program that would be included in the drop down list, and if you don’t fit into any of the predefined values, then you simply have to put down ‘others’ and specify if such option is available. Based on experience in survey design for data collection, I understand that drop down list is merely a convenient way to reduce the burden of data cleaning. However, there is indeed bias in such design as the selection of others could be perceived by application reviewers as less relevant and whatever they entered in the please specify field are most likely ignored during the application reviewing processes.
-![image](https://github.com/user-attachments/assets/ddfc0177-d45b-400a-bc7b-b93b0032f49b)
+
+
+
+
 
 
 ```
