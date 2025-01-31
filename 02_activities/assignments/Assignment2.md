@@ -55,6 +55,14 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 
 ```
 Your answer...
+
+To keep customer address, the customer_address table will have the following columns: customer_id, customer_first_name, customer_last_name, customer_address, customer_postal_code, entry_date.
+
+For type I slowly changing dimensions, updates on address will overwrite existing values with new values, meaning history on customer address will not be retained.
+
+Whereas for type II slowly changing dimensions, updating new address for the customer will result in the addition of a new row of data and the existing values/history of customer address will be
+retained.
+
 ```
 
 ***
