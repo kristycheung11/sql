@@ -242,61 +242,13 @@ When you have all of these components, you can run the update statement. */
 ALTER TABLE product_units
 ADD current_quantity INT;
 
+--Update
 
--- Create temp table to find lastest quantity per product 
-
-DROP TABLE IF EXISTS temp.new_vendor_inventory;
-
-CREATE TEMP TABLE IF NOT EXISTS temp. new_vendor_inventory AS
-
-SELECT 
-market_date,
-quantity as latest_quantity,
-vendor_id,
-product_id
-
-FROM
-(SELECT *,
- ROW_NUMBER() OVER (PARTITION BY vendor_id, product_id ORDER BY market_date DESC) AS inventory_count_order
-FROM vendor_inventory)
-
-WHERE inventory_count_order = 1;
-
---Another temp table with JOIN
-
-DROP TABLE IF EXISTS temp.vendor_inventory_product_table;
-
-CREATE TEMP TABLE IF NOT EXISTS temp.vendor_inventory_product_table AS
-
-SELECT p.*,
-nv.latest_quantity
-FROM product_units p
-LEFT JOIN new_vendor_inventory nv
-    ON p.product_id =nv.product_id;
-
---New product_unit table with LEFT JOIN
-
-DROP TABLE IF EXISTS new_product_unit_table;
-
-CREATE TABLE IF NOT EXISTS new_product_unit_table AS
-
-SELECT 
-p.product_id,
-p.product_name,
-p.product_size,
-p.product_category_id,
-p.product_qty_type,
-p.snapshot_timestamp,
-nv.latest_quantity as current_quantity
-FROM product_units p
-LEFT JOIN new_vendor_inventory nv
-    ON p.product_id =nv.product_id;
-	
-	
--- UPDATE
-
-UPDATE new_product_unit_table
-SET current_quantity = COALESCE (current_quantity,'0')
-
-
-
+UPDATE product_units
+SET current_quantity = COALESCE((
+    SELECT quantity
+    FROM vendor_inventory vi
+    WHERE vi.product_id = product_units.product_id
+    ORDER BY vi.market_date DESC
+    LIMIT 1
+), 0);
