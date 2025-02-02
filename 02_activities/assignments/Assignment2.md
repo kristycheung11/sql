@@ -55,6 +55,14 @@ The store wants to keep customer addresses. Propose two architectures for the CU
 
 ```
 Your answer...
+
+To keep customer address, the customer_address table will have the following columns: customer_id, customer_first_name, customer_last_name, customer_address, customer_postal_code, entry_date.
+
+For type I slowly changing dimensions, updates on address will overwrite existing values with new values, meaning history on customer address will not be retained.
+
+Whereas for type II slowly changing dimensions, updating new address for the customer will result in the addition of a new row of data and the existing values/history of customer address will be
+retained.
+
 ```
 
 ***
@@ -183,4 +191,9 @@ Consider, for example, concepts of labour, bias, LLM proliferation, moderating c
 
 ```
 Your thoughts...
+
+The first ethical issue that caught my attention is that most of the data gathered for the training sets rely on poorly paid labour from graduate students or from source like Amazon Mechanical Turk. I understand that part of being a graduate student is that you work for your supervisor and learn about how to conduct research during the process. However, I believe that there should be a way in which institutions that are owners of these databases (e.g. ImageNet, WordNet) can acknowledge those who contributed. After reading the article, I looked into ImageNet and there is currently no tab for contributors.
+
+Another ethical concern which I find quite important is the unintended biases that currently exists in the databases that are used for training AI models and may potentially perpetuate to other commercialized AI products, especially in healthcare sector. Recently, there has been discussion about how Clinical AI product for diagnosis may be trained using data that does not truly represent the different ethnicity groups in terms of medical history and prevalences, and therefore reduce the accuracy and usability of the product for specific populations. Therefore, as AI product becomes more popular in our society, I believe that these databases needed to be reviewed to ensure they adhere with current sociocultural and ethical standards.
+
 ```
